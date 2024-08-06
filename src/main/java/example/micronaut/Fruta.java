@@ -35,11 +35,11 @@ public class Fruta {
     private final String name;
 
     @Nullable
-    private String description;
+    private String descripcion;
 
-    public Fruta(@NonNull String name, @Nullable String description) {
+    public Fruta(@NonNull String name, @Nullable String descripcion) {
         this.name = name;
-        this.description = description;
+        this.descripcion = descripcion;
     }
 
     public String getId() {
@@ -56,11 +56,11 @@ public class Fruta {
     }
 
     @Nullable
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(@Nullable String description) {
-        this.description = description;
+    public void setDescripcion(@Nullable String descripcion) {
+        this.descripcion = descripcion;
     }
 }

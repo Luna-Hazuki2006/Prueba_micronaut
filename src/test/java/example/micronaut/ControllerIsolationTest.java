@@ -59,7 +59,7 @@ public class ControllerIsolationTest {
         assertEquals(MediaType.APPLICATION_JSON, response.getHeaders().get(HttpHeaders.CONTENT_TYPE));
         assertTrue(response.getBody().isPresent());
 
-        String all = response.getBody().get().stream().map(f -> f.getName() + ":" + f.getDescription()).collect(Collectors.joining(","));
+        String all = response.getBody().get().stream().map(f -> f.getName() + ":" + f.getDescripcion()).collect(Collectors.joining(","));
         assertEquals("apple:red,banana:yellow", all);
     }
 

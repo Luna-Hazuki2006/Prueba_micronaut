@@ -53,16 +53,16 @@ class FrutaControllerTest {
         List<Fruta> frutaList = StreamSupport.stream(frutas.spliterator(), false).collect(Collectors.toList());
         assertEquals(1, frutaList.size());
         assertEquals(banana.getName(), frutaList.get(0).getName());
-        assertNull(frutaList.get(0).getDescription());
+        assertNull(frutaList.get(0).getDescripcion());
 
         response = frutaClient.save(new Fruta("apple", "Keeps the doctor away"));
         assertEquals(HttpStatus.CREATED, response.getStatus());
 
         frutas = frutaClient.list();
         assertTrue(StreamSupport.stream(frutas.spliterator(), false)
-                .anyMatch(f -> "Keeps the doctor away".equals(f.getDescription())));
+                .anyMatch(f -> "Keeps the doctor away".equals(f.getDescripcion())));
 
-        banana.setDescription("Yellow and curved");
+        banana.setDescripcion("Yellow and curved");
         frutaClient.update(banana);
 
         frutas = frutaClient.list();
@@ -70,7 +70,7 @@ class FrutaControllerTest {
         assertEquals(
                 Stream.of("Keeps the doctor away", "Yellow and curved").collect(Collectors.toSet()),
                 StreamSupport.stream(frutas.spliterator(), false)
-                        .map(Fruta::getDescription)
+                        .map(Fruta::getDescripcion)
                         .collect(Collectors.toSet())
         );
     }

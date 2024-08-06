@@ -33,39 +33,39 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-@Controller("/fruits") // <1>
+@Controller("/frutas") // <1>
 @ExecuteOn(TaskExecutors.BLOCKING)  // <2>
-class FruitController {
+class FrutaController {
 
-    private final FruitService fruitService;
+    private final FrutaService FrutaService;
 
-    FruitController(FruitService fruitService) {  // <3>
-        this.fruitService = fruitService;
+    FrutaController(FrutaService FrutaService) {  // <3>
+        this.FrutaService = FrutaService;
     }
 
     @Get  // <4>
-    Iterable<Fruit> list() {
-        return fruitService.list();
+    Iterable<Fruta> list() {
+        return FrutaService.list();
     }
 
     @Post // <5>
     @Status(HttpStatus.CREATED) // <6>
-    Fruit save(@NonNull @NotNull @Valid Fruit fruit) { // <7>
-        return fruitService.save(fruit);
+    Fruta save(@NonNull @NotNull Fruta fruta) { // <7>
+        return FrutaService.save(fruta);
     }
 
     @Put
-    Fruit update(@NonNull @NotNull @Valid Fruit fruit) {
-        return fruitService.save(fruit);
+    Fruta update(@NonNull @NotNull @Valid Fruta fruta) {
+        return FrutaService.save(fruta);
     }
 
     @Get("/{id}") // <8>
-    Optional<Fruit> find(@PathVariable String id) {
-        return fruitService.find(id);
+    Optional<Fruta> find(@PathVariable String id) {
+        return FrutaService.find(id);
     }
 
     @Get("/q") // <9>
-    Iterable<Fruit> query(@QueryValue @NotNull List<String> names) { // <10>
-        return fruitService.findByNameInList(names);
+    Iterable<Fruta> query(@QueryValue @NotNull List<String> names) { // <10>
+        return FrutaService.findByNameInList(names);
     }
 }

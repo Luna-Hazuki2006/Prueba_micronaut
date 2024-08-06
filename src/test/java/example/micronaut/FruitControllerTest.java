@@ -32,58 +32,58 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
-class FruitControllerTest {
+class FrutaControllerTest {
 
     @Inject
-    FruitClient fruitClient;
+    FrutaClient frutaClient;
 
     @Test
-    void emptyDatabaseContainsNoFruit() {
-        assertEquals(0, StreamSupport.stream(fruitClient.list().spliterator(), false).count());
+    void emptyDatabaseContainsNoFruta() {
+        assertEquals(0, StreamSupport.stream(frutaClient.list().spliterator(), false).count());
     }
 
     @Test
     void testInteractionWithTheController() {
-        HttpResponse<Fruit> response = fruitClient.save(new Fruit("banana", null));
+        HttpResponse<Fruta> response = frutaClient.save(new Fruta("banana", null));
         assertEquals(HttpStatus.CREATED, response.getStatus());
-        Fruit banana = response.getBody().get();
+        Fruta banana = response.getBody().get();
 
-        Iterable<Fruit> fruits = fruitClient.list();
+        Iterable<Fruta> frutas = frutaClient.list();
 
-        List<Fruit> fruitList = StreamSupport.stream(fruits.spliterator(), false).collect(Collectors.toList());
-        assertEquals(1, fruitList.size());
-        assertEquals(banana.getName(), fruitList.get(0).getName());
-        assertNull(fruitList.get(0).getDescription());
+        List<Fruta> frutaList = StreamSupport.stream(frutas.spliterator(), false).collect(Collectors.toList());
+        assertEquals(1, frutaList.size());
+        assertEquals(banana.getName(), frutaList.get(0).getName());
+        assertNull(frutaList.get(0).getDescription());
 
-        response = fruitClient.save(new Fruit("apple", "Keeps the doctor away"));
+        response = frutaClient.save(new Fruta("apple", "Keeps the doctor away"));
         assertEquals(HttpStatus.CREATED, response.getStatus());
 
-        fruits = fruitClient.list();
-        assertTrue(StreamSupport.stream(fruits.spliterator(), false)
+        frutas = frutaClient.list();
+        assertTrue(StreamSupport.stream(frutas.spliterator(), false)
                 .anyMatch(f -> "Keeps the doctor away".equals(f.getDescription())));
 
         banana.setDescription("Yellow and curved");
-        fruitClient.update(banana);
+        frutaClient.update(banana);
 
-        fruits = fruitClient.list();
+        frutas = frutaClient.list();
 
         assertEquals(
                 Stream.of("Keeps the doctor away", "Yellow and curved").collect(Collectors.toSet()),
-                StreamSupport.stream(fruits.spliterator(), false)
-                        .map(Fruit::getDescription)
+                StreamSupport.stream(frutas.spliterator(), false)
+                        .map(Fruta::getDescription)
                         .collect(Collectors.toSet())
         );
     }
 
     @Test
     void testSearchWorksAsExpected() {
-        fruitClient.save(new Fruit("apple", "Keeps the doctor away"));
-        fruitClient.save(new Fruit("pineapple", "Delicious"));
-        fruitClient.save(new Fruit("lemon", "Lemonentary my dear Dr Watson"));
+        frutaClient.save(new Fruta("apple", "Keeps the doctor away"));
+        frutaClient.save(new Fruta("pineapple", "Delicious"));
+        frutaClient.save(new Fruta("lemon", "Lemonentary my dear Dr Watson"));
 
-        Iterable<Fruit> fruit = fruitClient.query(Arrays.asList("apple", "pineapple"));
+        Iterable<Fruta> fruta = frutaClient.query(Arrays.asList("apple", "pineapple"));
 
-        assertTrue(StreamSupport.stream(fruit.spliterator(), false)
+        assertTrue(StreamSupport.stream(fruta.spliterator(), false)
                 .allMatch(f -> f.getName().equals("apple") || f.getName().equals("pineapple")));
     }
 }

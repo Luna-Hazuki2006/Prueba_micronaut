@@ -22,8 +22,8 @@ import io.micronaut.data.repository.CrudRepository;
 import java.util.List;
 
 @MongoRepository // <1>
-public interface FruitRepository extends CrudRepository<Fruit, String> {
+public interface FrutaRepository extends CrudRepository<Fruta, String> {
 
     @NonNull
-    Iterable<Fruit> findByNameInList(@NonNull List<String> names); // <2>
+    Iterable<Fruta> findByNameInList(@NonNull List<String> names); // <2>
 }

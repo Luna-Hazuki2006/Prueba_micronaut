@@ -20,13 +20,13 @@ import io.micronaut.core.annotation.NonNull;
 import java.util.List;
 import java.util.Optional;
 
-interface FruitService {
+interface FrutaService {
 
-    Iterable<Fruit> list();
+    Iterable<Fruta> list();
 
-    Fruit save(Fruit fruit);
+    Fruta save(Fruta fruta);
 
-    Optional<Fruit> find(@NonNull String id);
+    Optional<Fruta> find(@NonNull String id);
 
-    Iterable<Fruit> findByNameInList(List<String> name);
+    Iterable<Fruta> findByNameInList(List<String> name);
 }

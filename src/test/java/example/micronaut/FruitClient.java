@@ -27,21 +27,21 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-@Client("/fruits")
-interface FruitClient {
+@Client("/frutas")
+interface FrutaClient {
 
     @Get
-    Iterable<Fruit> list();
+    Iterable<Fruta> list();
 
     @Get("/{id}")
-    Optional<Fruit> find(@PathVariable String id);
+    Optional<Fruta> find(@PathVariable String id);
 
     @Get("/q")
-    Iterable<Fruit> query(@QueryValue @NotNull List<String> names);
+    Iterable<Fruta> query(@QueryValue @NotNull List<String> names);
 
     @Post
-    HttpResponse<Fruit> save(Fruit fruit);
+    HttpResponse<Fruta> save(Fruta fruta);
 
     @Put
-    Fruit update(Fruit fruit);
+    Fruta update(Fruta fruta);
 }

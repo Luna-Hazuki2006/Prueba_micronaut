@@ -28,17 +28,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @MicronautTest
-class FruitValidationControllerTest {
+class FrutaValidationControllerTest {
 
     @Inject
     @Client("/")
     HttpClient httpClient;
 
     @Test
-    void fruitIsValidated() {
+    void frutaIsValidated() {
         HttpClientResponseException exception = assertThrows(
                 HttpClientResponseException.class,
-                () -> httpClient.toBlocking().exchange(HttpRequest.POST("/fruits", new Fruit("", "")))
+                () -> httpClient.toBlocking().exchange(HttpRequest.POST("/frutas", new Fruta("", "")))
         );
 
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());

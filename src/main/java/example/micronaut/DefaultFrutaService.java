@@ -22,31 +22,31 @@ import java.util.List;
 import java.util.Optional;
 
 @Singleton // <1>
-class DefaultFruitService implements FruitService {
+class DefaultFrutaService implements FrutaService {
 
-    private final FruitRepository fruitRepository;
+    private final FrutaRepository frutaRepository;
 
-    public DefaultFruitService(FruitRepository fruitRepository) {
-        this.fruitRepository = fruitRepository;
+    public DefaultFrutaService(FrutaRepository frutaRepository) {
+        this.frutaRepository = frutaRepository;
     }
 
-    public Iterable<Fruit> list() {
-        return fruitRepository.findAll();
+    public Iterable<Fruta> list() {
+        return frutaRepository.findAll();
     }
 
-    public Fruit save(Fruit fruit) {
-        if (fruit.getId() == null) {
-            return fruitRepository.save(fruit);
+    public Fruta save(Fruta fruta) {
+        if (fruta.getId() == null) {
+            return frutaRepository.save(fruta);
         } else {
-            return fruitRepository.update(fruit);
+            return frutaRepository.update(fruta);
         }
     }
 
-    public Optional<Fruit> find(@NonNull String id) {
-        return fruitRepository.findById(id);
+    public Optional<Fruta> find(@NonNull String id) {
+        return frutaRepository.findById(id);
     }
 
-    public Iterable<Fruit> findByNameInList(List<String> name) {
-        return fruitRepository.findByNameInList(name);
+    public Iterable<Fruta> findByNameInList(List<String> name) {
+        return frutaRepository.findByNameInList(name);
     }
 }

@@ -52,8 +52,8 @@ public class ControllerIsolationTest {
 
     @Test
     void checkSerialization() {
-        MutableHttpRequest<Object> get = HttpRequest.GET("/fruits");
-        HttpResponse<List<Fruit>> response = httpClient.toBlocking().exchange(get, Argument.listOf(Fruit.class));
+        MutableHttpRequest<Object> get = HttpRequest.GET("/frutas");
+        HttpResponse<List<Fruta>> response = httpClient.toBlocking().exchange(get, Argument.listOf(Fruta.class));
 
         assertEquals(HttpStatus.OK, response.getStatus());
         assertEquals(MediaType.APPLICATION_JSON, response.getHeaders().get(HttpHeaders.CONTENT_TYPE));
@@ -64,30 +64,30 @@ public class ControllerIsolationTest {
     }
 
     @Singleton
-    @Replaces(DefaultFruitService.class)
+    @Replaces(DefaultFrutaService.class)
     @Requires(property = "spec.name", value = "controller-isolation")
-    static class MockService implements FruitService {
+    static class MockService implements FrutaService {
 
         @Override
-        public Iterable<Fruit> list() {
+        public Iterable<Fruta> list() {
             return Arrays.asList(
-                    new Fruit("apple", "red"),
-                    new Fruit("banana", "yellow")
+                    new Fruta("apple", "red"),
+                    new Fruta("banana", "yellow")
             );
         }
 
         @Override
-        public Fruit save(Fruit fruit) {
-            return fruit;
+        public Fruta save(Fruta fruta) {
+            return fruta;
         }
 
         @Override
-        public Optional<Fruit> find(@NotNull String id) {
+        public Optional<Fruta> find(@NotNull String id) {
             return Optional.empty();
         }
 
         @Override
-        public Iterable<Fruit> findByNameInList(List<String> name) {
+        public Iterable<Fruta> findByNameInList(List<String> name) {
             return Collections.emptyList();
         }
     }

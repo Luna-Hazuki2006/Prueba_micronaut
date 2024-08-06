@@ -23,8 +23,8 @@ import io.micronaut.data.annotation.MappedEntity;
 
 import jakarta.validation.constraints.NotBlank;
 
-@MappedEntity // <1>
-public class Fruit {
+@MappedEntity(value = "frutas") // <1>
+public class Fruta {
 
     @Id // <2>
     @GeneratedValue
@@ -37,7 +37,7 @@ public class Fruit {
     @Nullable
     private String description;
 
-    public Fruit(@NonNull String name, @Nullable String description) {
+    public Fruta(@NonNull String name, @Nullable String description) {
         this.name = name;
         this.description = description;
     }

@@ -50,7 +50,7 @@ class FrutaController {
 
     @Post // <5>
     @Status(HttpStatus.CREATED) // <6>
-    Fruta save(@NonNull @NotNull Fruta fruta) { // <7>
+    Fruta save(@NonNull @NotNull @Valid Fruta fruta) { // <7>
         return FrutaService.save(fruta);
     }
 
@@ -65,7 +65,7 @@ class FrutaController {
     }
 
     @Get("/q") // <9>
-    Iterable<Fruta> query(@QueryValue @NotNull List<String> names) { // <10>
-        return FrutaService.findByNameInList(names);
+    Iterable<Fruta> query(@QueryValue @NotNull List<String> nombres) { // <10>
+        return FrutaService.findByNombreInList(nombres);
     }
 }

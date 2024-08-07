@@ -25,5 +25,5 @@ import java.util.List;
 public interface FrutaRepository extends CrudRepository<Fruta, String> {
 
     @NonNull
-    Iterable<Fruta> findByNameInList(@NonNull List<String> names); // <2>
+    Iterable<Fruta> findByNombreInList(@NonNull List<String> nombres); // <2>
 }

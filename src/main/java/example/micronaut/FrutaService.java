@@ -28,5 +28,5 @@ interface FrutaService {
 
     Optional<Fruta> find(@NonNull String id);
 
-    Iterable<Fruta> findByNameInList(List<String> name);
+    Iterable<Fruta> findByNombreInList(List<String> nombre);
 }

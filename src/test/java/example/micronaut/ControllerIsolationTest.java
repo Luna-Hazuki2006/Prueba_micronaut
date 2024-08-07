@@ -59,7 +59,7 @@ public class ControllerIsolationTest {
         assertEquals(MediaType.APPLICATION_JSON, response.getHeaders().get(HttpHeaders.CONTENT_TYPE));
         assertTrue(response.getBody().isPresent());
 
-        String all = response.getBody().get().stream().map(f -> f.getName() + ":" + f.getDescripcion()).collect(Collectors.joining(","));
+        String all = response.getBody().get().stream().map(f -> f.getNombre() + ":" + f.getDescripcion()).collect(Collectors.joining(","));
         assertEquals("apple:red,banana:yellow", all);
     }
 
@@ -87,7 +87,7 @@ public class ControllerIsolationTest {
         }
 
         @Override
-        public Iterable<Fruta> findByNameInList(List<String> name) {
+        public Iterable<Fruta> findByNombreInList(List<String> nombre) {
             return Collections.emptyList();
         }
     }

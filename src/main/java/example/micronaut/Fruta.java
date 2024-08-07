@@ -32,13 +32,13 @@ public class Fruta {
 
     @NonNull
     @NotBlank // <3>
-    private final String name;
+    private final String nombre;
 
     @Nullable
     private String descripcion;
 
-    public Fruta(@NonNull String name, @Nullable String descripcion) {
-        this.name = name;
+    public Fruta(@NonNull String nombre, @Nullable String descripcion) {
+        this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
@@ -51,8 +51,8 @@ public class Fruta {
     }
 
     @NonNull
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
     @Nullable

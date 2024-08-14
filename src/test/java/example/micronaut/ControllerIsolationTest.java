@@ -60,7 +60,7 @@ public class ControllerIsolationTest {
         assertTrue(response.getBody().isPresent());
 
         String all = response.getBody().get().stream().map(f -> f.getNombre() + ":" + f.getDescripcion()).collect(Collectors.joining(","));
-        assertEquals("apple:red,banana:yellow", all);
+        assertEquals("apple:red:hola,banana:yellow:adios", all);
     }
 
     @Singleton
@@ -71,8 +71,8 @@ public class ControllerIsolationTest {
         @Override
         public Iterable<Fruta> list() {
             return Arrays.asList(
-                    new Fruta("apple", "red"),
-                    new Fruta("banana", "yellow")
+                    new Fruta("apple", "red", "hola"),
+                    new Fruta("banana", "yellow", "adios")
             );
         }
 

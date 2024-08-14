@@ -44,7 +44,7 @@ class FrutaControllerTest {
 
     @Test
     void testInteractionWithTheController() {
-        HttpResponse<Fruta> response = frutaClient.save(new Fruta("banana", null));
+        HttpResponse<Fruta> response = frutaClient.save(new Fruta("banana", null, "https://elnuevopais.net/wp-content/uploads/2017/07/kk.jpg"));
         assertEquals(HttpStatus.CREATED, response.getStatus());
         Fruta banana = response.getBody().get();
 
@@ -55,7 +55,7 @@ class FrutaControllerTest {
         assertEquals(banana.getNombre(), frutaList.get(0).getNombre());
         assertNull(frutaList.get(0).getDescripcion());
 
-        response = frutaClient.save(new Fruta("apple", "Keeps the doctor away"));
+        response = frutaClient.save(new Fruta("apple", "Keeps the doctor away", "https://www.recetasnestlecam.com/sites/default/files/2022-04/tipos-de-manzana-royal-gala.jpg"));
         assertEquals(HttpStatus.CREATED, response.getStatus());
 
         frutas = frutaClient.list();
@@ -77,9 +77,9 @@ class FrutaControllerTest {
 
     @Test
     void testSearchWorksAsExpected() {
-        frutaClient.save(new Fruta("apple", "Keeps the doctor away"));
-        frutaClient.save(new Fruta("pineapple", "Delicious"));
-        frutaClient.save(new Fruta("lemon", "Lemonentary my dear Dr Watson"));
+        frutaClient.save(new Fruta("apple", "Keeps the doctor away", "https://www.recetasnestlecam.com/sites/default/files/2022-04/tipos-de-manzana-royal-gala.jpg"));
+        frutaClient.save(new Fruta("pineapple", "Delicious", "https://www.gastronomiavasca.net/uploads/image/file/3415/pi_a.jpg"));
+        frutaClient.save(new Fruta("lemon", "Lemonentary my dear Dr Watson", "https://t1.uc.ltmcdn.com/es/posts/9/7/7/como_aprovechar_al_maximo_un_limon_15779_600.jpg"));
 
         Iterable<Fruta> fruta = frutaClient.query(Arrays.asList("apple", "pineapple"));
 

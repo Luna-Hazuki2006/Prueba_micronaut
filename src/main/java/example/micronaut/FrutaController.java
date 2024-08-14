@@ -23,7 +23,9 @@ import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import io.micronaut.http.annotation.QueryValue;
+import io.micronaut.http.annotation.RequestAttribute;
 import io.micronaut.http.annotation.Status;
+import io.micronaut.runtime.http.scope.RequestScope;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
 
@@ -48,9 +50,12 @@ class FrutaController {
         return FrutaService.list();
     }
 
-    @Post // <5>
+
+    // @Post // <5>
+    @Post(consumes = "application/x-www-form-urlencoded")
     @Status(HttpStatus.CREATED) // <6>
-    Fruta save(@NonNull @NotNull @Valid Fruta fruta) { // <7>
+    Fruta save(String nombre, String descripcion, String foto) { // <7>
+        Fruta fruta = new Fruta(nombre, descripcion, foto);
         return FrutaService.save(fruta);
     }
 

@@ -90,5 +90,10 @@ public class ControllerIsolationTest {
         public Iterable<Fruta> findByNombreInList(List<String> nombre) {
             return Collections.emptyList();
         }
+
+        @Override
+        public Iterable<Fruta> findByTipoInList(String tipo) {
+            return Collections.emptyList();
+        }
     }
 }

@@ -73,4 +73,9 @@ class FrutaController {
     Iterable<Fruta> query(@QueryValue @NotNull List<String> nombres) { // <10>
         return FrutaService.findByNombreInList(nombres);
     }
+
+    @Get("/tipo/{tipo}")
+    Iterable<Fruta> listar(@PathVariable String tipo) {
+        return FrutaService.findByTipoInList(tipo);
+    }
 }

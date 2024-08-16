@@ -11,4 +11,5 @@ public interface TipoRepository extends CrudRepository<Tipo, String> {
 
     @NonNull
     Iterable<Tipo> findByNombreInList(@NonNull List<String> nombres); // <2>
+    
 }

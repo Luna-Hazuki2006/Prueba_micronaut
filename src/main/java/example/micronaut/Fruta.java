@@ -40,10 +40,15 @@ public class Fruta {
     @Nullable
     private String foto;
 
-    public Fruta(@NonNull String nombre, @Nullable String descripcion, @NonNull String foto) {
+    @NonNull
+    @NotBlank
+    private final String tipo;
+
+    public Fruta(@NonNull String nombre, @Nullable String descripcion, @NonNull String foto, @NonNull String tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.foto = foto;
+        this.tipo = tipo;
     }
 
     public String getId() {
@@ -76,4 +81,10 @@ public class Fruta {
     public void setFoto(@Nullable String foto) {
         this.foto = foto;
     }
+
+    @NonNull
+    public String getTipo() {
+        return tipo;
+    }
+
 }

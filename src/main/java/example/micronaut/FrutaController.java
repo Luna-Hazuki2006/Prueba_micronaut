@@ -54,8 +54,8 @@ class FrutaController {
     // @Post // <5>
     @Post(consumes = "application/x-www-form-urlencoded")
     @Status(HttpStatus.CREATED) // <6>
-    Fruta save(String nombre, String descripcion, String foto) { // <7>
-        Fruta fruta = new Fruta(nombre, descripcion, foto);
+    Fruta save(String nombre, String descripcion, String foto, String tipo) { // <7>
+        Fruta fruta = new Fruta(nombre, descripcion, foto, tipo);
         return FrutaService.save(fruta);
     }
 

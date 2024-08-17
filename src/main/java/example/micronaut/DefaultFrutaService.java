@@ -49,4 +49,8 @@ class DefaultFrutaService implements FrutaService {
     public Iterable<Fruta> findByNombreInList(List<String> nombre) {
         return frutaRepository.findByNombreInList(nombre);
     }
+
+    public Iterable<Fruta> findByTipoInList(String tipo) {
+        return frutaRepository.findByTipoInList(tipo);
+    }
 }

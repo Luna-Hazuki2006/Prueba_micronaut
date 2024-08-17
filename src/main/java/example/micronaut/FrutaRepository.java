@@ -26,4 +26,7 @@ public interface FrutaRepository extends CrudRepository<Fruta, String> {
 
     @NonNull
     Iterable<Fruta> findByNombreInList(@NonNull List<String> nombres); // <2>
+
+    @NonNull
+    Iterable<Fruta> findByTipoInList(@NonNull String tipo);
 }

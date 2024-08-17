@@ -54,8 +54,8 @@ class FrutaController {
     // @Post // <5>
     @Post(consumes = "application/x-www-form-urlencoded")
     @Status(HttpStatus.CREATED) // <6>
-    Fruta save(String nombre, String descripcion, String foto) { // <7>
-        Fruta fruta = new Fruta(nombre, descripcion, foto);
+    Fruta save(String nombre, String descripcion, String foto, String tipo) { // <7>
+        Fruta fruta = new Fruta(nombre, descripcion, foto, tipo);
         return FrutaService.save(fruta);
     }
 
@@ -72,5 +72,10 @@ class FrutaController {
     @Get("/q") // <9>
     Iterable<Fruta> query(@QueryValue @NotNull List<String> nombres) { // <10>
         return FrutaService.findByNombreInList(nombres);
+    }
+
+    @Get("/tipo/{tipo}")
+    Iterable<Fruta> listar(@PathVariable String tipo) {
+        return FrutaService.findByTipoInList(tipo);
     }
 }
